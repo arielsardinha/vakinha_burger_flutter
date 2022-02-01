@@ -5,7 +5,7 @@ class VkAppBar extends AppBar {
       : super(
           key: key,
           backgroundColor: Colors.white,
-          elevation: 3,
+          elevation: elevation,
           centerTitle: true,
           title: Image.asset(
             'assets/images/logo.png',
