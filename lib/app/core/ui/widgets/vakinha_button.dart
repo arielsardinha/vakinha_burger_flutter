@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class VkButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String label;
-  final double? whidth;
+  final double? width;
   final double? height;
   final Color? color;
   const VkButton({
     Key? key,
     required this.onPressed,
     required this.label,
-    this.whidth,
+    this.width,
     this.height,
     this.color,
   }) : super(key: key);
@@ -18,7 +18,7 @@ class VkButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: whidth,
+      width: width,
       height: height,
       child: ElevatedButton(
         onPressed: onPressed,
