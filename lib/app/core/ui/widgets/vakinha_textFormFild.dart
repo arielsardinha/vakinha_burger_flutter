@@ -7,7 +7,7 @@ class VkTextFormField extends StatelessWidget {
   final bool obscureTtext;
   final FormFieldValidator<String>? validator;
   final ValueChanged<String>? onChange;
-  VkTextFormField({
+  const VkTextFormField({
     Key? key,
     required this.label,
     this.obscureTtext = false,
