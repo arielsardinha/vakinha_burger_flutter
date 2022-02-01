@@ -38,7 +38,7 @@ class AuthRepositoryImpl implements AuthRepository {
     final result = await _restClient.post(
       '/auth/',
       {
-        'emai': email,
+        'email': email,
         'password': password,
       },
     );
