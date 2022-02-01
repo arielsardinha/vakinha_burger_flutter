@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:get/get_connect/http/src/exceptions/exceptions.dart';
 import 'package:vakinha_burger_mobile/app/core/exceptions/user_notfoun_exception.dart';
 import 'package:vakinha_burger_mobile/app/core/rest_client/rest_client.dart';
 import 'package:vakinha_burger_mobile/app/models/user_model.dart';
