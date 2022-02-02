@@ -1,5 +1,7 @@
 import 'dart:developer';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:vakinha_burger_mobile/app/core/constants/constants.dart';
 import 'package:vakinha_burger_mobile/app/core/mixins/loader_mixin.dart';
 import 'package:vakinha_burger_mobile/app/core/mixins/messages_mixin.dart';
 import 'package:vakinha_burger_mobile/app/core/rest_client/rest_client.dart';
@@ -29,17 +31,17 @@ class RegisterController extends GetxController
   }) async {
     try {
       _loading.toggle();
-      await _authRepository.register(name, email, password);
+      final userLogged = await _authRepository.register(name, email, password);
       _loading.toggle();
-      // TODO: voltar quando fizer o login
-      Get.back();
-      _message(
-        MessageModel(
-          title: 'Sucesso',
-          message: 'Cadastro realizado com sucesso',
-          type: MessageType.info,
-        ),
-      );
+      GetStorage().write(Constants.USER_KEY, userLogged.id);
+      // Get.back();
+      // _message(
+      //   MessageModel(
+      //     title: 'Sucesso',
+      //     message: 'Cadastro realizado com sucesso',
+      //     type: MessageType.info,
+      //   ),
+      // );
     } on RestClientException catch (e, s) {
       _loading.toggle();
       log('Erro ao registrar usuário', error: e, stackTrace: s);
