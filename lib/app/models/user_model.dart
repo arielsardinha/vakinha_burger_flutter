@@ -21,6 +21,8 @@ class UserModel {
         password: json['password'],
       );
 
+  String toJson() => json.encode(toMap());
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,

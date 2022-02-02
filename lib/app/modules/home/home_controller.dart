@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:vakinha_burger_mobile/app/core/services/auth_service.dart';
+import 'package:vakinha_burger_mobile/app/modules/menu/menu_bindings.dart';
 import 'package:vakinha_burger_mobile/app/modules/menu/menu_page.dart';
 
 class HomeController extends GetxController {
@@ -22,6 +23,7 @@ class HomeController extends GetxController {
     if (settings.name == '/menu') {
       return GetPageRoute(
         settings: settings,
+        binding: MenuBindings(),
         page: () => const MenuPage(),
         transition: Transition.fadeIn,
       );
