@@ -1,40 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:vakinha_burger_mobile/app/models/product_model.dart';
 
 class ProductTile extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final String image;
-  const ProductTile(
-      {Key? key,
-      required this.title,
-      required this.subtitle,
-      required this.image})
-      : super(key: key);
+  final ProductModel product;
+
+  const ProductTile({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        child: Card(
-          elevation: 2,
-          child: ListTile(
-            leading: Container(
-              width: 80,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10)),
-                image: DecorationImage(
-                  image: NetworkImage(''),
-                  fit: BoxFit.cover,
-                ),
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: Card(
+        elevation: 2,
+        child: ListTile(
+          onTap: () {},
+          leading: Container(
+            width: 80,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10)),
+              image: DecorationImage(
+                image: NetworkImage(
+                    'http://dartweek.academiadoflutter.com.br/images${product.image}'),
+                fit: BoxFit.cover,
               ),
             ),
-            title: Text(title),
-            subtitle: Text(subtitle),
           ),
+          title: Text(product.name),
+          subtitle: Text(product.description),
         ),
       ),
     );

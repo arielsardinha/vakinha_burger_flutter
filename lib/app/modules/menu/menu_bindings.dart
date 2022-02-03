@@ -6,8 +6,8 @@ import 'package:vakinha_burger_mobile/app/repositories/products/product_reposito
 class MenuBindings implements Bindings {
   @override
   void dependencies() {
-    // Get.put(MenuController(productRepository: Get.find()));
-    // Get.lazyPut<ProductRepository>(
-    //     () => ProductRepositoryImpl(restClient: Get.find()));
+    Get.lazyPut<ProductRepository>(
+        () => ProductRepositoryImpl(restClient: Get.find()));
+    Get.put(MenuController(productRepository: Get.find()));
   }
 }

@@ -11,7 +11,7 @@ class ProductRepositoryImpl implements ProductRepository {
       : _restClient = restClient;
   @override
   Future<List<ProductModel>> findAll() async {
-    final result = await _restClient.get('/products/');
+    final result = await _restClient.get<List>('/products/');
     if (result.hasError) {
       log(
         'Erro ao buscar produtos ${result.statusCode}',
@@ -20,7 +20,7 @@ class ProductRepositoryImpl implements ProductRepository {
       );
       throw RestClientException('Erro ao buscar produtos');
     }
-    return result.body
+    return result.body!
         .map<ProductModel>((e) => ProductModel.fromMap(e))
         .toList();
   }
