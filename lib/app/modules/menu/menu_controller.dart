@@ -27,7 +27,9 @@ class MenuController extends GetxController with LoaderMixin, MessagesMixin {
   Future<void> onReady() async {
     try {
       _loading.toggle();
-      await _findAllProducts();
+      await _findAllProducts().then((value) {
+        menu.assignAll(value);
+      });
       _loading.toggle();
     } catch (e, s) {
       _loading.toggle();
@@ -43,8 +45,23 @@ class MenuController extends GetxController with LoaderMixin, MessagesMixin {
     super.onReady();
   }
 
-  Future<void> _findAllProducts() async {
-    final _products = await _productRepository.findAll();
-    menu.assignAll(_products);
+  Future<List<ProductModel>> _findAllProducts() async {
+    return await _productRepository.findAll();
+  }
+
+  Future<void> refrashPage() async {
+    try {
+      await _findAllProducts().then((value) {
+        menu.addAll(value);
+      });
+    } catch (e, s) {
+      log('Erro ao bscar produtos', error: e, stackTrace: s);
+      _message(
+        MessageModel(
+            title: 'Erro',
+            message: 'Erro ao buscar menu',
+            type: MessageType.error),
+      );
+    }
   }
 }

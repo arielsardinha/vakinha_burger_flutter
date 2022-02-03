@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_helper.dart';
 import 'package:vakinha_burger_mobile/app/models/product_model.dart';
 
 class ProductTile extends StatelessWidget {
@@ -31,7 +32,13 @@ class ProductTile extends StatelessWidget {
             ),
           ),
           title: Text(product.name),
-          subtitle: Text(product.description),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(FormatterHelper.formatCurrency(product.price)),
+              Text(product.description)
+            ],
+          ),
         ),
       ),
     );
