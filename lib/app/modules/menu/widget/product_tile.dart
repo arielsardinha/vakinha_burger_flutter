@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_helper.dart';
 import 'package:vakinha_burger_mobile/app/models/product_model.dart';
 
@@ -17,7 +18,9 @@ class ProductTile extends StatelessWidget {
       child: Card(
         elevation: 2,
         child: ListTile(
-          onTap: () {},
+          onTap: () {
+            Get.toNamed('/product_detail', arguments: product);
+          },
           leading: Container(
             width: 80,
             decoration: BoxDecoration(
