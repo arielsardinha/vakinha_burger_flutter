@@ -4,6 +4,6 @@ import 'package:vakinha_burger_mobile/app/modules/product_detail/product_detail_
 class ProductDetailBings implements Bindings {
   @override
   void dependencies() {
-    Get.put(ProductDetailController());
+    Get.put(ProductDetailController(shoppingCardService: Get.find()));
   }
 }
