@@ -19,7 +19,6 @@ class ProductDetailController extends GetxController {
 
   @override
   void onInit() {
-    _totalPrice(product.price);
     ever<int>(_quantity, (quantity) {
       _totalPrice(product.price * quantity);
     });
