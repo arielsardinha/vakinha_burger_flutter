@@ -79,7 +79,8 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                   Center(
                     child: VkButton(
                       onPressed: controller.addProductInShoppingCard,
-                      label: 'Adicionar',
+                      label:
+                          controller.alreadyAdded ? 'Atualizar' : 'Adicionar',
                       width: context.widthTransformer(reducedBy: 10),
                     ),
                   )
