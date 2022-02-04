@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vakinha_burger_mobile/app/core/ui/vakinha_ui.dart';
+import 'package:vakinha_burger_mobile/app/core/ui/widgets/plus_minus_box.dart';
 import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_appar.dart';
 import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_button.dart';
 import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_helper.dart';
@@ -54,7 +55,7 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                           context.textTheme.headline2?.copyWith(fontSize: 20),
                     ),
                   ),
-                  const Text('Componente de botão'),
+                  const PlusMinusBox(),
                   const Divider(),
                   ListTile(
                     title: const Text(
