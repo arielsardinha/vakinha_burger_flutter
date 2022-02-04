@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_helper.dart';
 import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_rounded_button.dart';
 
 class PlusMinusBox extends StatelessWidget {
   final bool elevated;
   final Color? backgroundColor;
   final String? label;
+  final int quantity;
+  final double price;
+  final VoidCallback minusCallBack;
+  final VoidCallback plusCallBack;
+  final bool calculateTotal;
   const PlusMinusBox({
     Key? key,
+    this.calculateTotal = false,
+    required this.quantity,
+    required this.price,
+    required this.plusCallBack,
+    required this.minusCallBack,
     this.elevated = false,
     this.backgroundColor,
     this.label,
@@ -24,28 +35,33 @@ class PlusMinusBox extends StatelessWidget {
           color: backgroundColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Row(
-          children: [
-            Visibility(
-              visible: label != null,
-              child: Text(
-                label ?? '',
-                style: const TextStyle(
-                  fontSize: 15,
-                  overflow: TextOverflow.ellipsis,
+        child: Visibility(
+          visible: label != null,
+          child: Text(
+            label ?? '',
+            style: const TextStyle(
+              fontSize: 15,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          replacement: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              VkRoundedButton(
+                onPressedSom: plusCallBack,
+                onPressedSub: minusCallBack,
+                value: quantity,
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 20, right: 10),
+                constraints: const BoxConstraints(minWidth: 70),
+                child: Text(
+                  FormatterHelper.formatCurrency(
+                      calculateTotal ? price * quantity : price),
                 ),
-              ),
-              replacement: Row(
-                children: [
-                  VkRoundedButton(
-                    onPressedSom: () {},
-                    onPressedSub: () {},
-                    value: 1,
-                  )
-                ],
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

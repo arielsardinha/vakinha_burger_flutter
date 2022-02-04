@@ -55,7 +55,12 @@ class ProductDetailPage extends GetView<ProductDetailController> {
                           context.textTheme.headline2?.copyWith(fontSize: 20),
                     ),
                   ),
-                  const PlusMinusBox(),
+                  PlusMinusBox(
+                    minusCallBack: () {},
+                    plusCallBack: () {},
+                    quantity: 1,
+                    price: 6,
+                  ),
                   const Divider(),
                   ListTile(
                     title: const Text(
