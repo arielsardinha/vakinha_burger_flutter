@@ -6,7 +6,7 @@ class OrdersRouters {
   static final routers = <GetPage>[
     GetPage(
       name: '/orders/finished',
-      page: () => const FinishedPage(),
+      page: () => FinishedPage(),
     ),
   ];
 }

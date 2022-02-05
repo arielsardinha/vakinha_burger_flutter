@@ -15,10 +15,10 @@ class UserModel {
       UserModel.fromMap(json.decode(str));
 
   factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
-        id: json['id'],
-        name: json['name'],
-        email: json['email'],
-        password: json['password'],
+        id: json['id'] ?? 0,
+        name: json['name'] ?? '',
+        email: json['email'] ?? '',
+        password: json['password'] ?? '',
       );
 
   String toJson() => json.encode(toMap());

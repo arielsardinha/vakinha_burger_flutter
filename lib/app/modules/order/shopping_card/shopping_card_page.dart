@@ -7,7 +7,9 @@ import 'package:vakinha_burger_mobile/app/modules/order/shopping_card/shopping_c
 import 'package:validatorless/validatorless.dart';
 
 class ShoppingCardPage extends GetView<ShoppingCardController> {
-  const ShoppingCardPage({Key? key}) : super(key: key);
+  ShoppingCardPage({Key? key}) : super(key: key);
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,31 +24,14 @@ class ShoppingCardPage extends GetView<ShoppingCardController> {
               ),
               child: IntrinsicHeight(
                 child: Form(
+                    key: formKey,
                     child: Padding(
-                  padding: const EdgeInsets.all(25.0),
-                  child: Obx(
-                    () => Visibility(
-                      visible: controller.products.isNotEmpty,
-                      replacement: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Carrinho',
-                            style: context.textTheme.headline6?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: context.theme.primaryColorDark,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Text('Nenhum item adicionado no carrinho')
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
+                      padding: const EdgeInsets.all(25.0),
+                      child: Obx(
+                        () => Visibility(
+                          visible: controller.products.isNotEmpty,
+                          replacement: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Carrinho',
@@ -55,72 +40,101 @@ class ShoppingCardPage extends GetView<ShoppingCardController> {
                                   color: context.theme.primaryColorDark,
                                 ),
                               ),
-                              IconButton(
-                                onPressed: () => controller.clear(),
-                                icon: const Icon(
-                                  Icons.delete_outline,
-                                  color: Colors.red,
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const Text('Nenhum item adicionado no carrinho')
+                            ],
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    'Carrinho',
+                                    style:
+                                        context.textTheme.headline6?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: context.theme.primaryColorDark,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    onPressed: () => controller.clear(),
+                                    icon: const Icon(
+                                      Icons.delete_outline,
+                                      color: Colors.red,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Column(
+                                children: controller.products
+                                    .map((e) => Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          child: PlusMinusBox(
+                                            label: e.product.name,
+                                            calculateTotal: true,
+                                            elevated: true,
+                                            backgroundColor: Colors.white,
+                                            quantity: e.quantity,
+                                            price: e.product.price,
+                                            plusCallBack: () => controller
+                                                .addQuantityInProduct(e),
+                                            minusCallBack: () => controller
+                                                .subtractQuantityInProduct(e),
+                                          ),
+                                        ))
+                                    .toList(),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'total pedido',
+                                    style:
+                                        context.textTheme.headline6?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(FormatterHelper.formatCurrency(
+                                      controller.totalValue))
+                                ],
+                              ),
+                              const Divider(),
+                              const _AddressField(),
+                              const Divider(),
+                              const _CpfField(),
+                              const Divider(),
+                              const Spacer(),
+                              Center(
+                                child: SizedBox(
+                                  width:
+                                      context.widthTransformer(reducedBy: 10),
+                                  child: VkButton(
+                                    onPressed: () {
+                                      final formValid =
+                                          formKey.currentState?.validate() ??
+                                              false;
+
+                                      if (formValid) {
+                                        controller.createOrder();
+                                      }
+                                    },
+                                    label: 'FINALIZAR',
+                                  ),
                                 ),
                               )
                             ],
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Column(
-                            children: controller.products
-                                .map((e) => Container(
-                                      margin: const EdgeInsets.symmetric(
-                                          vertical: 10),
-                                      child: PlusMinusBox(
-                                        label: e.product.name,
-                                        calculateTotal: true,
-                                        elevated: true,
-                                        backgroundColor: Colors.white,
-                                        quantity: e.quantity,
-                                        price: e.product.price,
-                                        plusCallBack: () =>
-                                            controller.addQuantityInProduct(e),
-                                        minusCallBack: () => controller
-                                            .subtractQuantityInProduct(e),
-                                      ),
-                                    ))
-                                .toList(),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'total pedido',
-                                style: context.textTheme.headline6?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(FormatterHelper.formatCurrency(
-                                  controller.totalValue))
-                            ],
-                          ),
-                          const Divider(),
-                          const _AddressField(),
-                          const Divider(),
-                          const _CpfField(),
-                          const Divider(),
-                          const Spacer(),
-                          Center(
-                            child: SizedBox(
-                              width: context.widthTransformer(reducedBy: 10),
-                              child: VkButton(
-                                onPressed: () =>
-                                    Get.toNamed('/orders/finished'),
-                                label: 'FINALIZAR',
-                              ),
-                            ),
-                          )
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                )),
+                    )),
               ),
             ),
           );

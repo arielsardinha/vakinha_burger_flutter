@@ -42,7 +42,7 @@ class HomeController extends GetxController {
       return GetPageRoute(
         settings: settings,
         binding: ShoppingCardBindings(),
-        page: () => const ShoppingCardPage(),
+        page: () => ShoppingCardPage(),
         transition: Transition.fadeIn,
       );
     }

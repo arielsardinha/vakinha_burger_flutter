@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_button.dart';
+import 'package:vakinha_burger_mobile/app/models/order_pix.dart';
 import 'package:vakinha_burger_mobile/app/modules/order/finished/finished_controller.dart';
 
 class FinishedPage extends GetView<FinishedController> {
-  const FinishedPage({Key? key}) : super(key: key);
+  FinishedPage({Key? key}) : super(key: key);
+
+  final OrderPix _orderPix = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
