@@ -35,7 +35,8 @@ class FinishedPage extends GetView<FinishedController> {
                     ),
                   ),
                   VkButton(
-                    onPressed: () {},
+                    onPressed: () =>
+                        Get.toNamed('/orders/pix', arguments: _orderPix),
                     label: 'PIX',
                     color: context.theme.primaryColorDark,
                     width: context.widthTransformer(reducedBy: 30),
