@@ -43,7 +43,9 @@ class FinishedPage extends GetView<FinishedController> {
                   ),
                   const Spacer(),
                   VkButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.offAllNamed('/home');
+                    },
                     label: 'FECHAR',
                     width: context.widthTransformer(reducedBy: 10),
                   ),

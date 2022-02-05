@@ -4,9 +4,8 @@ import 'package:get/get.dart';
 import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_appar.dart';
 import 'package:vakinha_burger_mobile/app/core/ui/widgets/vakinha_helper.dart';
 import 'package:vakinha_burger_mobile/app/models/order_pix.dart';
-import 'package:vakinha_burger_mobile/app/modules/order/pix/pix_controller.dart';
 
-class PixPage extends GetView<PixController> {
+class PixPage extends GetView {
   PixPage({Key? key}) : super(key: key);
 
   final OrderPix _orderPix = Get.arguments;
