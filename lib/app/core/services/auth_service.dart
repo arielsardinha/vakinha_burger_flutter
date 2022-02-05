@@ -16,10 +16,10 @@ class AuthService extends GetxService {
     );
     ever<bool?>(_isLogged, (isLogged) {
       if (isLogged == null || !isLogged) {
-        Get.toNamed('/auth/login');
+        Get.offNamed('/auth/login');
         log('Deslogou !!!!!!');
       } else {
-        Get.toNamed('/home');
+        Get.offNamed('/home');
         log('Logou !!!!!!');
       }
     });

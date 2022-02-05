@@ -37,12 +37,34 @@ class PlusMinusBox extends StatelessWidget {
         ),
         child: Visibility(
           visible: label != null,
-          child: Text(
-            label ?? '',
-            style: const TextStyle(
-              fontSize: 15,
-              overflow: TextOverflow.ellipsis,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 80,
+                child: Text(
+                  label ?? '',
+                  style: const TextStyle(
+                    fontSize: 15,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ),
+              VkRoundedButton(
+                onPressedSom: plusCallBack,
+                onPressedSub: minusCallBack,
+                value: quantity,
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 20, right: 10),
+                constraints: const BoxConstraints(minWidth: 70),
+                child: Text(
+                  FormatterHelper.formatCurrency(
+                      calculateTotal ? price * quantity : price),
+                ),
+              )
+            ],
           ),
           replacement: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
