@@ -18,11 +18,11 @@ class ProductModel {
       ProductModel.fromMap(json.decode(str));
 
   factory ProductModel.fromMap(Map<String, dynamic> json) => ProductModel(
-        id: json['id'],
-        name: json['name'],
-        description: json['description'],
-        price: json['price'],
-        image: json['image'],
+        id: json['id'] ?? 0,
+        name: json['name'] ?? '',
+        description: json['description'] ?? '',
+        price: json['price'] ?? '',
+        image: json['image'] ?? '',
       );
 
   String toJson() => json.encode(toMap());
