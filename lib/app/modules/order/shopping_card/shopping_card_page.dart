@@ -110,7 +110,8 @@ class ShoppingCardPage extends GetView<ShoppingCardController> {
                             child: SizedBox(
                               width: context.widthTransformer(reducedBy: 10),
                               child: VkButton(
-                                onPressed: () {},
+                                onPressed: () =>
+                                    Get.toNamed('/orders/finished'),
                                 label: 'FINALIZAR',
                               ),
                             ),
